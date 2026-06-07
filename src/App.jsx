@@ -5,6 +5,7 @@ import { Projects } from  "@/sections/Projects"
 import { Experience } from  "@/sections/Experience"
 import { Certifications } from  "@/sections/Certifications"
 import { Contact } from  "@/sections/Contact"
+import { BackToTop } from "@/Components/BackToTop"
 
 
 function App() {
@@ -19,6 +20,7 @@ function App() {
         <Certifications />
         <Contact />
       </main>
+      <BackToTop />
     </div>
   );
 }
