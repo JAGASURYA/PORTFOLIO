@@ -3,41 +3,37 @@ import { Button } from "@/Components/Button";
 import { Menu, X } from "lucide-react";
 
 const navLinks = [
-  { href: "#about", label: "About" },
-  { href: "#projects", label: "Projects" },
-  { href: "#experience", label: "Experience" },
+  { href: "#about",          label: "About" },
+  { href: "#projects",       label: "Projects" },
+  { href: "#experience",     label: "Experience" },
   { href: "#certifications", label: "Certifications" },
 ];
 
 export const Navbar = () => {
-  const scrollToContact = () => {
-  const el = document.getElementById("contact");
-
-  if (el) {
-    el.scrollIntoView({ behavior: "smooth" });
-  }
-
-  setIsMobileMenuOpen(false);
-};
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
 
-  useEffect(() => {
-    const handleScroll = () => {
-      setIsScrolled(window.scrollY > 50);
-     };
-    window.addEventListener("scroll", handleScroll);
+  const scrollToContact = () => {
+    document.getElementById("contact")?.scrollIntoView({ behavior: "smooth" });
+    setIsMobileMenuOpen(false);
+  };
 
+  useEffect(() => {
+    const handleScroll = () => setIsScrolled(window.scrollY > 50);
+    window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
-  }, [])
+  }, []);
+
   return (
-    <header className={`fixed top-0 left-0 right-0 transition-all duration-500 ${isScrolled ? "glass-strong py-3" : "bg-transparent py-5"} z-50`}>
-      <nav className="container mx-auto px-6 flex items-center justify-between">
-        <a
-          href="#"
-          className="text-xl font-bold tracking-tight hover:text-primary"
-        >
-          PM<span className="text-primary">.</span>
+    <header
+      className={`fixed top-0 left-0 right-0 transition-all duration-500 ${
+        isScrolled ? "glass-strong py-3" : "bg-transparent py-5"
+      } z-50`}
+    >
+      <nav className="container mx-auto px-4 sm:px-6 flex items-center justify-between">
+        {/* Logo — fixed to JH. */}
+        <a href="#" className="text-xl font-bold tracking-tight hover:text-primary transition-colors">
+          JH<span className="text-primary">.</span>
         </a>
 
         {/* Desktop Nav */}
@@ -45,9 +41,9 @@ export const Navbar = () => {
           <div className="glass rounded-full px-2 py-1 flex items-center gap-1">
             {navLinks.map((link, index) => (
               <a
-                href={link.href}
                 key={index}
-                className="px-4 py-2 text-sm text-muted-foreground hover:text-foreground rounded-full hover:bg-surface"
+                href={link.href}
+                className="px-4 py-2 text-sm text-muted-foreground hover:text-foreground rounded-full hover:bg-surface transition-all duration-200"
               >
                 {link.label}
               </a>
@@ -55,7 +51,7 @@ export const Navbar = () => {
           </div>
         </div>
 
-        {/* CTA Button */}
+        {/* CTA */}
         <div className="hidden md:block">
           <Button size="sm" onClick={scrollToContact}>
             Contact Me
@@ -66,6 +62,7 @@ export const Navbar = () => {
         <button
           className="md:hidden p-2 text-foreground cursor-pointer"
           onClick={() => setIsMobileMenuOpen((prev) => !prev)}
+          aria-label="Toggle menu"
         >
           {isMobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
         </button>
@@ -74,21 +71,18 @@ export const Navbar = () => {
       {/* Mobile Menu */}
       {isMobileMenuOpen && (
         <div className="md:hidden glass-strong animate-fade-in">
-          <div className="container mx-auto px-6 py-6 flex flex-col gap-4">
+          <div className="container mx-auto px-4 py-5 flex flex-col gap-3">
             {navLinks.map((link, index) => (
               <a
-                href={link.href}
                 key={index}
+                href={link.href}
                 onClick={() => setIsMobileMenuOpen(false)}
-                className="text-lg text-muted-foreground hover:text-foreground py-2"
+                className="text-base text-muted-foreground hover:text-foreground py-2 transition-colors"
               >
                 {link.label}
               </a>
             ))}
-
-            <Button onClick={scrollToContact}>
-                Contact Me
-              </Button>
+            <Button onClick={scrollToContact}>Contact Me</Button>
           </div>
         </div>
       )}
