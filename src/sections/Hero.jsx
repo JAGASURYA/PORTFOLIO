@@ -2,7 +2,6 @@ import { Button } from "@/Components/Button";
 import { ArrowRight, ChevronDown, Download } from "lucide-react";
 import { AnimatedBorderButton } from "../Components/AnimatedBorderButton";
 import { FaGithub, FaLinkedin, FaInstagram } from "react-icons/fa";
-import { useMemo } from "react";
 
 const skills = [
   "Python","Pandas","NumPy","Machine Learning","Data Analysis","Data Cleaning",
@@ -11,7 +10,6 @@ const skills = [
   "SKU Management","Quality Control","E-commerce Operations",
 ];
 
-// Generate dots once outside the component so they don't re-randomize on re-render
 const dots = Array.from({ length: 25 }, (_, i) => ({
   left: `${(i * 137.5) % 100}%`,
   top:  `${(i * 97.3)  % 100}%`,
@@ -116,8 +114,8 @@ export const Hero = () => {
             </div>
           </div>
 
-          {/* Right Column — Profile Image */}
-          <div className="relative animate-fade-in animate-delay-300 hidden sm:block">
+          {/* Right Column — Profile Image (same as original) */}
+          <div className="relative animate-fade-in animate-delay-300">
             <div className="relative max-w-md mx-auto">
               <div className="absolute inset-0 rounded-3xl bg-gradient-to-br from-primary/30 via-transparent to-primary/10 blur-2xl animate-pulse" />
               <div className="relative glass rounded-3xl p-2 glow-border">
@@ -127,20 +125,21 @@ export const Hero = () => {
                   className="w-full aspect-[4/5] object-cover rounded-2xl"
                 />
                 {/* Available badge */}
-                <div className="absolute -bottom-4 -right-4 glass rounded-xl px-3 py-2 sm:px-4 sm:py-3 animate-float">
-                  <div className="flex items-center gap-2 sm:gap-3">
+                <div className="absolute -bottom-4 -right-4 glass rounded-xl px-4 py-3 animate-float">
+                  <div className="flex items-center gap-3">
                     <div className="w-3 h-3 bg-green-500 rounded-full animate-pulse" />
-                    <span className="text-xs sm:text-sm font-medium">Available for work</span>
+                    <span className="text-sm font-medium">Available for work</span>
                   </div>
                 </div>
                 {/* Years badge */}
-                <div className="absolute -top-4 -left-4 glass rounded-xl px-3 py-2 sm:px-4 sm:py-3 animate-float animate-delay-500">
-                  <div className="text-xl sm:text-2xl font-bold text-primary">1+</div>
+                <div className="absolute -top-4 -left-4 glass rounded-xl px-4 py-3 animate-float animate-delay-500">
+                  <div className="text-2xl font-bold text-primary">1+</div>
                   <div className="text-xs text-muted-foreground">Years Exp.</div>
                 </div>
               </div>
             </div>
           </div>
+
         </div>
 
         {/* Skills Marquee */}
