@@ -183,3 +183,40 @@
       0 0 80px color-mix(in srgb, var(--color-primary) 25%, transparent);
   }
 }
+
+  /* ── Scroll Reveal ── */
+  .scroll-hidden {
+    opacity: 0;
+    transform: translateY(40px);
+    transition: opacity 0.7s cubic-bezier(0.22, 1, 0.36, 1),
+                transform 0.7s cubic-bezier(0.22, 1, 0.36, 1);
+  }
+
+  .scroll-hidden.scroll-visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  .scroll-hidden-left {
+    opacity: 0;
+    transform: translateX(-40px);
+    transition: opacity 0.7s cubic-bezier(0.22, 1, 0.36, 1),
+                transform 0.7s cubic-bezier(0.22, 1, 0.36, 1);
+  }
+
+  .scroll-hidden-left.scroll-visible {
+    opacity: 1;
+    transform: translateX(0);
+  }
+
+  .scroll-hidden-right {
+    opacity: 0;
+    transform: translateX(40px);
+    transition: opacity 0.7s cubic-bezier(0.22, 1, 0.36, 1),
+                transform 0.7s cubic-bezier(0.22, 1, 0.36, 1);
+  }
+
+  .scroll-hidden-right.scroll-visible {
+    opacity: 1;
+    transform: translateX(0);
+  }
